@@ -6,6 +6,7 @@
 3. Navigate to the location of the docker-compose.yml file
 4. Run `docker-compose up -d` to start the both apps and the database
 5. Go to `http://localhost:3000/` to login
+6. In order to use AI polishing tool for reviews, please populate the huggingface.apiKey property in application.properties. Either use your own if you have it or email me and I will send one to you.
 
 Login credentials: 
 - manager: username: charlie, password: password3
@@ -18,6 +19,7 @@ Login credentials:
 3. in the /hrapp-BE directory, run `mvn spring-boot:run` to start the backend
 4. in the /hrapp-FE directory, run `npm install` and `npm start` to start the frontend
 5. Go to `http://localhost:3000/` to login
+6. In order to use AI polishing tool for reviews, please populate the huggingface.apiKey property in application.properties. Either use your own if you have it or email me and I will send one to you.
 
 ### About the architecture:
 I'd say I created a pretty classic 3-tier architecture, with a React frontend, a Spring Boot backend and a PostgreSQL database.
