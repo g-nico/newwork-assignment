@@ -29,6 +29,7 @@ export default function EmployeeManagerApp() {
   const [selected, setSelected] = useState<Employee | null>(null);
   const [createError, setCreateError] = useState<string | null>(null);
   const [editError, setEditError] = useState<string | null>(null);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
 
   const { createAbsence, error: absenceError } = useAbsences();
   const [showAbsencePanel, setShowAbsencePanel] = useState(false);
@@ -140,8 +141,12 @@ export default function EmployeeManagerApp() {
 
   const handleDelete = async () => {
     if (!deleting) return;
-    await remove(deleting.uuid);
-    setDeleting(null);
+    try {
+      await remove(deleting.uuid);
+      setDeleting(null);
+    } catch (e: any) {
+      setDeleteError(e?.message || "Failed to update employee.");
+    }
   };
 
   useEffect(() => {
@@ -296,7 +301,8 @@ export default function EmployeeManagerApp() {
         <DeleteEmployeeModal
           open={!!deleting}
           employee={deleting}
-          onCancel={() => setDeleting(null)}
+          error={deleteError}
+          onCancel={() => { setDeleting(null); setDeleteError(null); }}
           onConfirm={handleDelete}
         />
       </div>

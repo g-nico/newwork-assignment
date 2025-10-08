@@ -1,14 +1,16 @@
 import { Trash2 } from "lucide-react";
 import { Employee } from "../../type/Employee";
+import { AlertCircle } from "lucide-react";
 
 type Props = {
   open: boolean;
   employee: Employee | null;
+  error: string | null;
   onCancel: () => void;
   onConfirm: () => Promise<void> | void;
 };
 
-export default function DeleteEmployeeModal({ open, employee, onCancel, onConfirm }: Props) {
+export default function DeleteEmployeeModal({ open, employee, error, onCancel, onConfirm }: Props) {
   if (!open || !employee) return null;
 
   return (
@@ -19,6 +21,12 @@ export default function DeleteEmployeeModal({ open, employee, onCancel, onConfir
           Are you sure you want to delete{" "}
           <span className="font-semibold">{employee.name}</span>?
         </p>
+        {error && (
+          <div className="alert alert-error mb-3">
+            <AlertCircle className="w-4 h-4" />
+            <span>{error}</span>
+          </div>
+        )}
         <div className="modal-action">
           <button className="btn" onClick={onCancel} type="button">
             Cancel

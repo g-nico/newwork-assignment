@@ -31,7 +31,7 @@ export function ReviewForm({
 
             {/* Notice about HuggingFace */}
             <p className="text-xs text-gray-500">
-                ✨ This review will be automatically polished using HuggingFace language models before publishing.
+                ✨ This review will be automatically polished using HuggingFace language models before publishing. This may take a couple of seconds
             </p>
 
             {err && <p className="text-sm text-red-500">{err}</p>}
